@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHEMNEST DICTIONARY - Your Complete Chemistry Encyclopedia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <h1 class="logo">⚗️ CHEMNEST DICTIONARY</h1>
+                    <p class="tagline">Your Complete Chemistry Encyclopedia &amp; Toolkit</p>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="home">Home</button>
+                <button class="nav-tab" data-tab="periodic-table">Periodic Table</button>
+                <button class="nav-tab" data-tab="elements">Elements</button>
+                <button class="nav-tab" data-tab="compounds">Compounds</button>
+                <button class="nav-tab" data-tab="reactions">Reactions</button>
+                <button class="nav-tab" data-tab="calculators">Calculators</button>
+                <button class="nav-tab" data-tab="reference">Reference</button>
+                <button class="nav-tab" data-tab="tools">Tools</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="tab-content active">
+            <div class="container">
+                <div class="hero-section">
+                    <h2 class="hero-title">Welcome to CHEMNEST DICTIONARY</h2>
+                    <p class="hero-subtitle">The Ultimate Chemistry Encyclopedia &amp; Toolkit</p>
+                    <p class="hero-description">Explore ALL 118 elements, 100+ compounds, 80+ reactions, 20+ calculators, and comprehensive reference tables. Your complete chemistry resource from basic to advanced.</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">118</div>
+                            <div class="stat-label">Elements</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Compounds</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">80+</div>
+                            <div class="stat-label">Reactions</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">20+</div>
+                            <div class="stat-label">Calculators</div>
+                        </div>
+                    </div>
+                    <div class="quick-search">
+                        <input type="text" id="globalSearch" placeholder="Search elements, compounds, reactions..." class="form-control">
+                    </div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card" onclick="navigateToTab('periodic-table')">
+                        <div class="feature-icon">🔬</div>
+                        <h3>Periodic Table</h3>
+                        <p>Interactive periodic table with all 118 elements</p>
+                    </div>
+                    <div class="feature-card" onclick="navigateToTab('calculators')">
+                        <div class="feature-icon">🧮</div>
+                        <h3>Calculators</h3>
+                        <p>20+ chemistry calculators for all your needs</p>
+                    </div>
+                    <div class="feature-card" onclick="navigateToTab('reactions')">
+                        <div class="feature-icon">⚛️</div>
+                        <h3>Reactions</h3>
+                        <p>Complete database of chemical reactions</p>
+                    </div>
+                    <div class="feature-card" onclick="navigateToTab('reference')">
+                        <div class="feature-icon">📚</div>
+                        <h3>Reference</h3>
+                        <p>Extensive chemistry reference tables</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Periodic Table Section -->
+        <section id="periodic-table" class="tab-content">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Interactive Periodic Table</h2>
+                    <div class="search-filter">
+                        <input type="text" id="elementSearch" placeholder="Search elements..." class="form-control">
+                        <select id="categoryFilter" class="form-control">
+                            <option value="all">All Categories</option>
+                            <option value="nonmetal">Nonmetals</option>
+                            <option value="noble-gas">Noble Gases</option>
+                            <option value="alkali-metal">Alkali Metals</option>
+                            <option value="alkaline-earth">Alkaline Earth</option>
+                            <option value="transition-metal">Transition Metals</option>
+                            <option value="post-transition">Post-transition Metals</option>
+                            <option value="metalloid">Metalloids</option>
+                            <option value="halogen">Halogens</option>
+                            <option value="lanthanide">Lanthanides</option>
+                            <option value="actinide">Actinides</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-color nonmetal"></span> Nonmetal</div>
+                    <div class="legend-item"><span class="legend-color noble-gas"></span> Noble Gas</div>
+                    <div class="legend-item"><span class="legend-color alkali-metal"></span> Alkali Metal</div>
+                    <div class="legend-item"><span class="legend-color alkaline-earth"></span> Alkaline Earth</div>
+                    <div class="legend-item"><span class="legend-color transition-metal"></span> Transition Metal</div>
+                    <div class="legend-item"><span class="legend-color metalloid"></span> Metalloid</div>
+                    <div class="legend-item"><span class="legend-color halogen"></span> Halogen</div>
+                    <div class="legend-item"><span class="legend-color actinide"></span> Actinide</div>
+                </div>
+                <div id="periodicTableGrid" class="periodic-table-grid"></div>
+            </div>
+        </section>
+
+        <!-- Elements List Section -->
+        <section id="elements" class="tab-content">
+            <div class="container">
+                <h2>Complete Elements Database</h2>
+                <p class="section-intro">All 118 elements with detailed properties, uses, and information</p>
+                <div class="search-filter">
+                    <input type="text" id="elementsListSearch" placeholder="Search elements..." class="form-control">
+                    <select id="elementsListCategory" class="form-control">
+                        <option value="all">All Categories</option>
+                        <option value="nonmetal">Nonmetals</option>
+                        <option value="noble-gas">Noble Gases</option>
+                        <option value="alkali-metal">Alkali Metals</option>
+                        <option value="alkaline-earth">Alkaline Earth</option>
+                        <option value="transition-metal">Transition Metals</option>
+                        <option value="post-transition">Post-transition Metals</option>
+                        <option value="metalloid">Metalloids</option>
+                        <option value="halogen">Halogens</option>
+                        <option value="lanthanide">Lanthanides</option>
+                        <option value="actinide">Actinides</option>
+                    </select>
+                </div>
+                <div id="elementsList" class="elements-list-grid"></div>
+            </div>
+        </section>
+
+        <!-- Calculators Section -->
+        <section id="calculators" class="tab-content">
+            <div class="container">
+                <h2>Advanced Chemistry Calculators</h2>
+                <div class="calculator-grid">
+                    <!-- Molar Mass Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Molar Mass Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">Chemical Formula</label>
+                            <input type="text" id="molarMassInput" placeholder="e.g., H2O, C6H12O6" class="form-control">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateMolarMass()">Calculate</button>
+                        <div id="molarMassResult" class="result"></div>
+                    </div>
+
+                    <!-- pH Calculator -->
+                    <div class="card calculator-card">
+                        <h3>pH Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">H⁺ Concentration (M)</label>
+                            <input type="number" id="hConcentration" placeholder="e.g., 0.001" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculatePH()">Calculate pH</button>
+                        <div id="phResult" class="result"></div>
+                    </div>
+
+                    <!-- Dilution Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Dilution Calculator (C₁V₁=C₂V₂)</h3>
+                        <div class="form-group">
+                            <label class="form-label">C₁ (Initial Concentration, M)</label>
+                            <input type="number" id="c1" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">V₁ (Initial Volume, mL)</label>
+                            <input type="number" id="v1" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">C₂ (Final Concentration, M)</label>
+                            <input type="number" id="c2" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">V₂ (Final Volume, mL) - leave blank to calculate</label>
+                            <input type="number" id="v2" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateDilution()">Calculate</button>
+                        <div id="dilutionResult" class="result"></div>
+                    </div>
+
+                    <!-- Ideal Gas Law Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Ideal Gas Law (PV=nRT)</h3>
+                        <div class="form-group">
+                            <label class="form-label">Pressure (atm)</label>
+                            <input type="number" id="pressure" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Volume (L)</label>
+                            <input type="number" id="volume" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Temperature (K)</label>
+                            <input type="number" id="temperature" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateIdealGas()">Calculate Moles (n)</button>
+                        <div id="idealGasResult" class="result"></div>
+                    </div>
+
+                    <!-- Molarity Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Molarity Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">Moles of Solute (mol)</label>
+                            <input type="number" id="moles" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Volume of Solution (L)</label>
+                            <input type="number" id="solutionVolume" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateMolarity()">Calculate Molarity</button>
+                        <div id="molarityResult" class="result"></div>
+                    </div>
+
+                    <!-- Percent Composition Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Percent Composition</h3>
+                        <div class="form-group">
+                            <label class="form-label">Chemical Formula</label>
+                            <input type="text" id="percentCompInput" placeholder="e.g., H2O" class="form-control">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculatePercentComposition()">Calculate</button>
+                        <div id="percentCompResult" class="result"></div>
+                    </div>
+
+                    <!-- Stoichiometry Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Stoichiometry Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">Molar Mass of Reactant (g/mol)</label>
+                            <input type="number" id="reactantMass" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mass of Reactant (g)</label>
+                            <input type="number" id="reactantAmount" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Molar Mass of Product (g/mol)</label>
+                            <input type="number" id="productMass" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mole Ratio (Product:Reactant)</label>
+                            <input type="number" id="moleRatio" class="form-control" step="any" value="1">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateStoichiometry()">Calculate Product Mass</button>
+                        <div id="stoichiometryResult" class="result"></div>
+                    </div>
+
+                    <!-- Limiting Reagent Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Limiting Reagent Finder</h3>
+                        <div class="form-group">
+                            <label class="form-label">Reactant A: Moles Available</label>
+                            <input type="number" id="reagentA" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reactant A: Coefficient</label>
+                            <input type="number" id="coefficientA" class="form-control" step="any" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reactant B: Moles Available</label>
+                            <input type="number" id="reagentB" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reactant B: Coefficient</label>
+                            <input type="number" id="coefficientB" class="form-control" step="any" value="1">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateLimitingReagent()">Find Limiting Reagent</button>
+                        <div id="limitingReagentResult" class="result"></div>
+                    </div>
+
+                    <!-- Percent Yield Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Percent Yield Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">Theoretical Yield (g)</label>
+                            <input type="number" id="theoreticalYield" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Actual Yield (g)</label>
+                            <input type="number" id="actualYield" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculatePercentYield()">Calculate</button>
+                        <div id="percentYieldResult" class="result"></div>
+                    </div>
+
+                    <!-- Empirical Formula Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Empirical Formula Finder</h3>
+                        <div class="form-group">
+                            <label class="form-label">Mass % of C</label>
+                            <input type="number" id="empC" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mass % of H</label>
+                            <input type="number" id="empH" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mass % of O</label>
+                            <input type="number" id="empO" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateEmpiricalFormula()">Calculate</button>
+                        <div id="empiricalFormulaResult" class="result"></div>
+                    </div>
+
+                    <!-- Molality Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Molality Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">Moles of Solute (mol)</label>
+                            <input type="number" id="molalityMoles" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mass of Solvent (kg)</label>
+                            <input type="number" id="solventMass" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateMolality()">Calculate</button>
+                        <div id="molalityResult" class="result"></div>
+                    </div>
+
+                    <!-- Oxidation Number Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Oxidation Number Guide</h3>
+                        <div class="form-group">
+                            <label class="form-label">Compound Formula</label>
+                            <input type="text" id="oxidationFormula" placeholder="e.g., H2SO4" class="form-control">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateOxidationNumber()">Analyze</button>
+                        <div id="oxidationNumberResult" class="result"></div>
+                    </div>
+
+                    <!-- Half-Life Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Half-Life Calculator</h3>
+                        <div class="form-group">
+                            <label class="form-label">Initial Amount (g)</label>
+                            <input type="number" id="initialAmount" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Half-Life (years)</label>
+                            <input type="number" id="halfLife" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Time Elapsed (years)</label>
+                            <input type="number" id="timeElapsed" class="form-control" step="any">
+                        </div>
+                        <button class="btn btn--primary" onclick="calculateHalfLife()">Calculate</button>
+                        <div id="halfLifeResult" class="result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reactions Section -->
+        <section id="reactions" class="tab-content">
+            <div class="container">
+                <h2>Chemical Reactions Database</h2>
+                <div class="reactions-container">
+                    <div class="card">
+                        <h3>Inorganic Reactions</h3>
+                        <div id="inorganicReactions" class="reactions-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Organic Reactions</h3>
+                        <div id="organicReactions" class="reactions-list"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Compounds Section -->
+        <section id="compounds" class="tab-content">
+            <div class="container">
+                <h2>Compounds Database</h2>
+                <div class="search-filter">
+                    <input type="text" id="compoundSearch" placeholder="Search compounds..." class="form-control">
+                </div>
+                <div class="compounds-grid">
+                    <div class="card">
+                        <h3>Inorganic Compounds</h3>
+                        <div id="inorganicCompounds" class="compounds-list"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Organic Compounds</h3>
+                        <div id="organicCompounds" class="compounds-list"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section id="tools" class="tab-content">
+            <div class="container">
+                <h2>Chemistry Tools &amp; Converters</h2>
+                <div class="calculator-grid">
+                    <!-- Temperature Converter -->
+                    <div class="card calculator-card">
+                        <h3>Temperature Converter</h3>
+                        <div class="form-group">
+                            <label class="form-label">Value</label>
+                            <input type="number" id="tempValue" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">From</label>
+                            <select id="tempFrom" class="form-control">
+                                <option value="C">Celsius (°C)</option>
+                                <option value="F">Fahrenheit (°F)</option>
+                                <option value="K">Kelvin (K)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">To</label>
+                            <select id="tempTo" class="form-control">
+                                <option value="C">Celsius (°C)</option>
+                                <option value="F">Fahrenheit (°F)</option>
+                                <option value="K" selected>Kelvin (K)</option>
+                            </select>
+                        </div>
+                        <button class="btn btn--primary" onclick="convertTemperature()">Convert</button>
+                        <div id="temperatureResult" class="result"></div>
+                    </div>
+
+                    <!-- Pressure Converter -->
+                    <div class="card calculator-card">
+                        <h3>Pressure Converter</h3>
+                        <div class="form-group">
+                            <label class="form-label">Value</label>
+                            <input type="number" id="pressureValue" class="form-control" step="any">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">From</label>
+                            <select id="pressureFrom" class="form-control">
+                                <option value="atm" selected>Atmospheres (atm)</option>
+                                <option value="Pa">Pascal (Pa)</option>
+                                <option value="kPa">Kilopascal (kPa)</option>
+                                <option value="mmHg">mmHg</option>
+                                <option value="psi">PSI</option>
+                            </select>
+                        </div>
+                        <button class="btn btn--primary" onclick="convertPressure()">Convert All</button>
+                        <div id="pressureResult" class="result"></div>
+                    </div>
+
+                    <!-- Scientific Notation Converter -->
+                    <div class="card calculator-card">
+                        <h3>Scientific Notation</h3>
+                        <div class="form-group">
+                            <label class="form-label">Number</label>
+                            <input type="text" id="sciNotationInput" placeholder="e.g., 0.000123 or 1.23e-4" class="form-control">
+                        </div>
+                        <button class="btn btn--primary" onclick="convertScientificNotation()">Convert</button>
+                        <div id="scientificNotationResult" class="result"></div>
+                    </div>
+
+                    <!-- Significant Figures Calculator -->
+                    <div class="card calculator-card">
+                        <h3>Significant Figures</h3>
+                        <div class="form-group">
+                            <label class="form-label">Number</label>
+                            <input type="text" id="sigFigInput" placeholder="e.g., 12.340" class="form-control">
+                        </div>
+                        <button class="btn btn--primary" onclick="countSigFigs()">Count</button>
+                        <div id="sigFigResult" class="result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reference Section -->
+        <section id="reference" class="tab-content">
+            <div class="container">
+                <h2>Reference Data</h2>
+                <div class="reference-grid">
+                    <div class="card">
+                        <h3>Common Polyatomic Ions</h3>
+                        <div id="polyatomicIons" class="reference-table"></div>
+                    </div>
+                    <div class="card">
+                        <h3>Solubility Rules</h3>
+                        <ul class="reference-list">
+                            <li>Most nitrate (NO₃⁻) salts are soluble</li>
+                            <li>Most salts of alkali metals and ammonium are soluble</li>
+                            <li>Most chloride, bromide, and iodide salts are soluble (except Ag⁺, Pb²⁺, Hg₂²⁺)</li>
+                            <li>Most sulfate salts are soluble (except Ba²⁺, Pb²⁺, Ca²⁺, Sr²⁺)</li>
+                            <li>Most hydroxide salts are only slightly soluble (except alkali metals and Ba²⁺)</li>
+                            <li>Most sulfide, carbonate, chromate, and phosphate salts are only slightly soluble</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Activity Series (Most to Least Reactive)</h3>
+                        <ul class="reference-list">
+                            <li><strong>Metals:</strong> Li &gt; K &gt; Ba &gt; Ca &gt; Na &gt; Mg &gt; Al &gt; Zn &gt; Fe &gt; Ni &gt; Sn &gt; Pb &gt; H &gt; Cu &gt; Ag &gt; Au</li>
+                            <li><strong>Halogens:</strong> F₂ &gt; Cl₂ &gt; Br₂ &gt; I₂</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Common Acids &amp; Bases</h3>
+                        <div class="two-column">
+                            <div>
+                                <h4>Strong Acids:</h4>
+                                <ul class="reference-list">
+                                    <li>HCl - Hydrochloric acid</li>
+                                    <li>HBr - Hydrobromic acid</li>
+                                    <li>HI - Hydroiodic acid</li>
+                                    <li>HNO₃ - Nitric acid</li>
+                                    <li>H₂SO₄ - Sulfuric acid</li>
+                                    <li>HClO₄ - Perchloric acid</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4>Strong Bases:</h4>
+                                <ul class="reference-list">
+                                    <li>LiOH - Lithium hydroxide</li>
+                                    <li>NaOH - Sodium hydroxide</li>
+                                    <li>KOH - Potassium hydroxide</li>
+                                    <li>Ca(OH)₂ - Calcium hydroxide</li>
+                                    <li>Sr(OH)₂ - Strontium hydroxide</li>
+                                    <li>Ba(OH)₂ - Barium hydroxide</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Functional Groups</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Group</th>
+                                    <th>Structure</th>
+                                    <th>Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Alkane</td><td>-C-C-</td><td>Saturated hydrocarbon</td></tr>
+                                <tr><td>Alkene</td><td>C=C</td><td>Double bond</td></tr>
+                                <tr><td>Alkyne</td><td>C≡C</td><td>Triple bond</td></tr>
+                                <tr><td>Alcohol</td><td>-OH</td><td>Hydroxyl group</td></tr>
+                                <tr><td>Aldehyde</td><td>-CHO</td><td>Carbonyl at end</td></tr>
+                                <tr><td>Ketone</td><td>-CO-</td><td>Carbonyl in middle</td></tr>
+                                <tr><td>Carboxylic Acid</td><td>-COOH</td><td>Acidic group</td></tr>
+                                <tr><td>Ester</td><td>-COO-</td><td>From acid + alcohol</td></tr>
+                                <tr><td>Amine</td><td>-NH₂</td><td>Basic group</td></tr>
+                                <tr><td>Amide</td><td>-CONH₂</td><td>From acid + amine</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card">
+                        <h3>Physical Constants</h3>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Constant</th>
+                                    <th>Symbol</th>
+                                    <th>Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Avogadro's Number</td><td>N<sub>A</sub></td><td>6.022 × 10<sup>23</sup> mol<sup>-1</sup></td></tr>
+                                <tr><td>Gas Constant</td><td>R</td><td>8.314 J/(mol·K) or 0.08206 L·atm/(mol·K)</td></tr>
+                                <tr><td>Speed of Light</td><td>c</td><td>2.998 × 10<sup>8</sup> m/s</td></tr>
+                                <tr><td>Planck's Constant</td><td>h</td><td>6.626 × 10<sup>-34</sup> J·s</td></tr>
+                                <tr><td>Faraday's Constant</td><td>F</td><td>96,485 C/mol</td></tr>
+                                <tr><td>Boltzmann Constant</td><td>k<sub>B</sub></td><td>1.381 × 10<sup>-23</sup> J/K</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CHEMNEST DICTIONARY. The Ultimate Chemistry Encyclopedia.</p>
+            <p>Educational resource for chemistry students, teachers, and professionals.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Element Details -->
+    <div id="elementModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="elementDetails"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
