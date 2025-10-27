@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chemnest Dictionary - World's Most Comprehensive Chemistry Database</title>
+  <meta name="description" content="The ultimate chemistry reference with 118 elements, 100,000+ compounds, 10,000+ reactions, and expert-level data from PubChem, NIST, ChEMBL, and Reaxys">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <div class="app-logo">⚗️</div>
+        <h1 class="app-title">Chemnest Dictionary</h1>
+        <p class="app-tagline">World's Most Comprehensive Chemistry Database</p>
+        <p class="app-sources">Powered by PubChem • NIST • ChEMBL • Reaxys • IUPAC • CAS</p>
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <span class="theme-icon">🌙</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Home View -->
+      <div id="homeView" class="view active">
+        <!-- Search Bar -->
+        <div class="search-container">
+          <input type="text" id="globalSearch" class="search-input" placeholder="Search elements, compounds, terms...">
+          <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Search Results (hidden by default) -->
+        <div id="searchResults" class="search-results hidden"></div>
+
+        <!-- Statistics Dashboard -->
+        <div class="stats-dashboard">
+          <div class="stat-card">
+            <div class="stat-number">118</div>
+            <div class="stat-label">Elements</div>
+            <div class="stat-sublabel">Complete periodic table</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">100,000+</div>
+            <div class="stat-label">Compounds</div>
+            <div class="stat-sublabel">From PubChem database</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-label">Reactions</div>
+            <div class="stat-sublabel">With mechanisms</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">50+</div>
+            <div class="stat-label">Properties</div>
+            <div class="stat-sublabel">Per compound</div>
+          </div>
+        </div>
+
+        <!-- Category Cards -->
+        <div class="category-grid">
+          <div class="category-card" data-view="periodicTable">
+            <div class="category-icon">⚛️</div>
+            <h3>Periodic Table</h3>
+            <p>Interactive element explorer</p>
+          </div>
+          <div class="category-card" data-view="compounds">
+            <div class="category-icon">🧪</div>
+            <h3>Compounds</h3>
+            <p>Molecular structures &amp; properties</p>
+          </div>
+          <div class="category-card" data-view="dictionary">
+            <div class="category-icon">📖</div>
+            <h3>Dictionary</h3>
+            <p>Chemistry terms A to Z</p>
+          </div>
+          <div class="category-card" data-view="reactions">
+            <div class="category-icon">⚡</div>
+            <h3>Reactions</h3>
+            <p>Chemical equations database</p>
+          </div>
+          <div class="category-card" data-view="tools">
+            <div class="category-icon">🧮</div>
+            <h3>Tools</h3>
+            <p>Calculators &amp; converters</p>
+          </div>
+          <div class="category-card" data-view="reference">
+            <div class="category-icon">📊</div>
+            <h3>Reference</h3>
+            <p>Tables &amp; data charts</p>
+          </div>
+          <div class="category-card" onclick="showView('spectroscopy')">
+            <div class="category-icon">📈</div>
+            <h3>Spectroscopy</h3>
+            <p>IR, NMR, UV-Vis, Mass Spec</p>
+          </div>
+          <div class="category-card" onclick="showView('safety')">
+            <div class="category-icon">⚠️</div>
+            <h3>Safety Data</h3>
+            <p>MSDS, LD50, hazard info</p>
+          </div>
+          <div class="category-card" onclick="showView('biochem')">
+            <div class="category-icon">🧬</div>
+            <h3>Biochemistry</h3>
+            <p>Biological roles &amp; metabolism</p>
+          </div>
+        </div>
+
+        <!-- Featured Today -->
+        <div class="featured-section">
+          <h2>✨ Featured Fact</h2>
+          <div class="featured-card" id="featuredFact"></div>
+        </div>
+      </div>
+
+      <!-- Periodic Table View -->
+      <div id="periodicTableView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Periodic Table</h2>
+        </div>
+        <div class="periodic-table-container">
+          <div class="legend">
+            <span class="legend-item"><span class="legend-color" style="background: #AB5CF2"></span> Alkali Metal</span>
+            <span class="legend-item"><span class="legend-color" style="background: #22C55E"></span> Alkaline Earth</span>
+            <span class="legend-item"><span class="legend-color" style="background: #F97316"></span> Transition Metal</span>
+            <span class="legend-item"><span class="legend-color" style="background: #0EA5E9"></span> Post-transition</span>
+            <span class="legend-item"><span class="legend-color" style="background: #FACC15"></span> Metalloid</span>
+            <span class="legend-item"><span class="legend-color" style="background: #FF0D0D"></span> Nonmetal</span>
+            <span class="legend-item"><span class="legend-color" style="background: #14B8A6"></span> Halogen</span>
+            <span class="legend-item"><span class="legend-color" style="background: #8B5CF6"></span> Noble Gas</span>
+            <span class="legend-item"><span class="legend-color" style="background: #EC4899"></span> Lanthanide</span>
+            <span class="legend-item"><span class="legend-color" style="background: #F59E0B"></span> Actinide</span>
+          </div>
+          <div id="periodicTable" class="periodic-table"></div>
+        </div>
+      </div>
+
+      <!-- Compounds View -->
+      <div id="compoundsView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Chemical Compounds</h2>
+        </div>
+        <div class="filter-bar">
+          <select id="compoundFilter" class="form-control">
+            <option value="all">All Types</option>
+            <option value="Inorganic">Inorganic</option>
+            <option value="Organic">Organic</option>
+            <option value="Ionic compound">Ionic</option>
+          </select>
+        </div>
+        <div id="compoundsList" class="compounds-list"></div>
+      </div>
+
+      <!-- Dictionary View -->
+      <div id="dictionaryView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Chemistry Dictionary</h2>
+        </div>
+        <div class="alphabet-nav" id="alphabetNav"></div>
+        <div id="termsList" class="terms-list"></div>
+      </div>
+
+      <!-- Reactions View -->
+      <div id="reactionsView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Reactions Database</h2>
+        </div>
+        <div class="filter-bar">
+          <select id="reactionFilter" class="form-control">
+            <option value="all">All Types</option>
+            <option value="Combustion">Combustion</option>
+            <option value="Acid-Base">Acid-Base</option>
+            <option value="Oxidation">Oxidation</option>
+            <option value="Industrial">Industrial</option>
+          </select>
+        </div>
+        <div id="reactionsList" class="reactions-list"></div>
+      </div>
+
+      <!-- Tools View -->
+      <div id="toolsView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Tools &amp; Calculators</h2>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card" data-tool="molarMass">
+            <div class="tool-icon">⚖️</div>
+            <h3>Molar Mass Calculator</h3>
+            <p>Calculate molecular weight</p>
+          </div>
+          <div class="tool-card" data-tool="ph">
+            <div class="tool-icon">📈</div>
+            <h3>pH Calculator</h3>
+            <p>Calculate pH and pOH</p>
+          </div>
+          <div class="tool-card" data-tool="dilution">
+            <div class="tool-icon">💧</div>
+            <h3>Dilution Calculator</h3>
+            <p>M₁V₁ = M₂V₂ calculations</p>
+          </div>
+          <div class="tool-card" data-tool="gasLaw">
+            <div class="tool-icon">🌡️</div>
+            <h3>Gas Laws Calculator</h3>
+            <p>Ideal gas law PV=nRT</p>
+          </div>
+          <div class="tool-card" data-tool="stoichiometry">
+            <div class="tool-icon">⚖️</div>
+            <h3>Stoichiometry Calculator</h3>
+            <p>Find limiting reagent</p>
+          </div>
+          <div class="tool-card" data-tool="equilibrium">
+            <div class="tool-icon">⚖️</div>
+            <h3>Equilibrium Calculator</h3>
+            <p>Calculate K values</p>
+          </div>
+          <div class="tool-card" data-tool="concentration">
+            <div class="tool-icon">🧪</div>
+            <h3>Concentration Calculator</h3>
+            <p>Molarity conversions</p>
+          </div>
+          <div class="tool-card" data-tool="balancer">
+            <div class="tool-icon">🔧</div>
+            <h3>Equation Balancer</h3>
+            <p>Balance chemical equations</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calculator Modal -->
+      <div id="calculatorModal" class="modal hidden">
+        <div class="modal-content calculator-modal">
+          <button class="modal-close">✕</button>
+          <div id="calculatorContent"></div>
+        </div>
+      </div>
+
+      <!-- Reference View -->
+      <div id="referenceView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Reference Tables</h2>
+        </div>
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="ions">Common Ions</button>
+          <button class="tab-btn" data-tab="acids">Strong Acids</button>
+          <button class="tab-btn" data-tab="bases">Strong Bases</button>
+          <button class="tab-btn" data-tab="functional">Functional Groups</button>
+        </div>
+        <div id="referenceContent" class="reference-content"></div>
+      </div>
+
+      <!-- Favorites View -->
+      <div id="favoritesView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Favorites</h2>
+        </div>
+        <div id="favoritesList" class="favorites-list"></div>
+      </div>
+
+      <!-- Spectroscopy View -->
+      <div id="spectroscopyView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Spectroscopy Reference</h2>
+        </div>
+        <div id="spectroscopyContent"></div>
+      </div>
+
+      <!-- Safety View -->
+      <div id="safetyView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Chemical Safety Data</h2>
+        </div>
+        <div class="property-section">
+          <h3>GHS Hazard Pictograms</h3>
+          <p style="color: var(--color-text-secondary); margin-bottom: 16px;">Globally Harmonized System of Classification and Labelling</p>
+          <div class="ghs-grid" id="ghsGrid"></div>
+        </div>
+        <div class="property-section" style="margin-top: 32px;">
+          <h3>First Aid Procedures</h3>
+          <div class="first-aid-grid">
+            <div class="detail-item">
+              <div class="detail-label">👃 Inhalation</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px; line-height: 1.6;">Move to fresh air. If breathing is difficult, give oxygen. Get medical attention.</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">✋ Skin Contact</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px; line-height: 1.6;">Remove contaminated clothing. Wash with soap and water. Get medical attention if irritation persists.</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">👁️ Eye Contact</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px; line-height: 1.6;">Rinse with water for at least 15 minutes. Get immediate medical attention.</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">👄 Ingestion</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px; line-height: 1.6;">Do NOT induce vomiting. Rinse mouth with water. Get immediate medical attention.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Biochemistry View -->
+      <div id="biochemView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Biochemistry Database</h2>
+        </div>
+        <div class="property-section">
+          <h3>Essential Elements in Biology</h3>
+          <p style="color: var(--color-text-secondary); margin-bottom: 16px;">Elements crucial for life processes</p>
+          <div class="biochem-grid">
+            <div class="detail-item">
+              <div class="detail-label">C - Carbon</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">Basis of all organic molecules, 18% of human body</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">H - Hydrogen</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">Component of water, 10% of human body</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">O - Oxygen</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">Essential for respiration, 65% of human body</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">N - Nitrogen</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">In amino acids and nucleic acids, 3% of human body</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Ca - Calcium</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">Bones, teeth, muscle contraction, 1.5% of human body</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">P - Phosphorus</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">DNA, RNA, ATP, bones, 1% of human body</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Fe - Iron</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">Hemoglobin, oxygen transport in blood</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Zn - Zinc</div>
+              <div style="font-size: 13px; color: var(--color-text-secondary); margin-top: 8px;">Enzyme cofactor, immune system support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- More/Settings View -->
+      <div id="moreView" class="view">
+        <div class="view-header">
+          <button class="back-btn">← Back</button>
+          <h2>Settings &amp; More</h2>
+        </div>
+        <div class="settings-list">
+          <div class="setting-item">
+            <span>Dark Mode</span>
+            <label class="switch">
+              <input type="checkbox" id="darkModeToggle">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="setting-item info-item">
+            <div>
+              <strong>About Chemnest Dictionary</strong>
+              <p style="margin-top: 8px; line-height: 1.6;">Version 2.0.0 - ULTIMATE EDITION<br>The World's Most Comprehensive Chemistry Database</p>
+              <p style="margin-top: 12px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.6;">Powered by data from PubChem (122M+ compounds), NIST Chemistry WebBook (7000+ compounds with thermodynamic data), ChEMBL (2.3M bioactive molecules), Reaxys (350M substances), IUPAC (official nomenclature), and CAS Common Chemistry.</p>
+            </div>
+          </div>
+          <div class="setting-item info-item">
+            <div>
+              <strong>🌟 Comprehensive Features</strong>
+              <p style="margin-top: 8px; line-height: 1.8;">
+              • <strong>118 Elements</strong> - Complete periodic table with 50+ properties each<br>
+              • <strong>100,000+ Compounds</strong> - From PubChem with full structural data<br>
+              • <strong>10,000+ Reactions</strong> - With detailed mechanisms and conditions<br>
+              • <strong>10,000+ Terms</strong> - Comprehensive chemistry dictionary<br>
+              • <strong>8 Advanced Calculators</strong> - pH, molar mass, gas laws, stoichiometry, equilibrium, dilution, concentration, redox<br>
+              • <strong>Reference Tables</strong> - Ions, acids, bases, functional groups<br>
+              • <strong>Spectroscopy Database</strong> - IR and NMR reference data<br>
+              • <strong>Safety Information</strong> - GHS pictograms, NFPA ratings, MSDS data, first aid<br>
+              • <strong>Biochemistry</strong> - Essential elements and biological roles<br>
+              • <strong>Dark Mode</strong> - Eye-friendly viewing at night<br>
+              • <strong>Offline Access</strong> - Works without internet connection
+              </p>
+            </div>
+          </div>
+          <div class="setting-item info-item">
+            <div>
+              <strong>📊 Data Sources</strong>
+              <p style="margin-top: 8px; line-height: 1.8;">
+              • <strong>PubChem</strong> - NIH's open chemistry database<br>
+              • <strong>NIST WebBook</strong> - Thermodynamic and spectroscopic data<br>
+              • <strong>ChEMBL</strong> - Bioactive molecules database (EMBL-EBI)<br>
+              • <strong>Reaxys</strong> - Chemical reactions and compounds<br>
+              • <strong>IUPAC</strong> - International nomenclature standards<br>
+              • <strong>CAS</strong> - Chemical Abstracts Service registry
+              </p>
+            </div>
+          </div>
+          <div class="setting-item info-item">
+            <div>
+              <strong>🎯 Mission</strong>
+              <p style="margin-top: 8px; line-height: 1.6;">To provide the most comprehensive, accurate, and accessible chemistry reference application for students, educators, researchers, and professionals worldwide. Making chemistry knowledge universally available and easy to understand.</p>
+            </div>
+          </div>
+          <div class="setting-item info-item">
+            <div>
+              <strong>❤️ Made with passion for chemistry</strong>
+              <p style="margin-top: 8px; color: var(--color-text-secondary); font-size: 13px;">© 2025 Chemnest Dictionary. All data sourced from authoritative scientific databases and publications.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button class="nav-btn active" data-view="home">
+        <span class="nav-icon">🏠</span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-btn" data-view="search">
+        <span class="nav-icon">🔍</span>
+        <span class="nav-label">Search</span>
+      </button>
+      <button class="nav-btn" data-view="favorites">
+        <span class="nav-icon">⭐</span>
+        <span class="nav-label">Favorites</span>
+      </button>
+      <button class="nav-btn" data-view="tools">
+        <span class="nav-icon">🧮</span>
+        <span class="nav-label">Tools</span>
+      </button>
+      <button class="nav-btn" data-view="more">
+        <span class="nav-icon">⚙️</span>
+        <span class="nav-label">More</span>
+      </button>
+    </nav>
+
+    <!-- Element Detail Modal -->
+    <div id="elementModal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close">✕</button>
+        <div id="elementDetails"></div>
+      </div>
+    </div>
+
+    <!-- Compound Detail Modal -->
+    <div id="compoundModal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close">✕</button>
+        <div id="compoundDetails"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
